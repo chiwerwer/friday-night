@@ -92,7 +92,7 @@ a{color:inherit}
 
   <div class="shell">
     <aside class="portrait" aria-label="Friday Night portrait">
-      <img src="hero-person.webp" alt="Friday Night meme portrait">
+      <img src="person.webp" alt="Friday Night meme portrait" onerror="this.onerror=null;this.src='hero-person.webp'">
       <div class="tape top">working all week / waiting all week</div>
       <h1 class="portrait-title">Friday <em>Night</em></h1>
       <div class="tape bottom">no hesitation after 20:00</div>
@@ -192,7 +192,7 @@ function schedule(now,timeZone){
   if(weekday===0 || weekday===6){
     const nextMonday=addWallDays(mondayDate.y,mondayDate.m,mondayDate.d,7);
     monday=wallToInstant(nextMonday.y,nextMonday.m,nextMonday.d,0,0,0,timeZone);
-    const nf=addWallDays(nextMonday.y,nextMonday.m,nextMonday.d,4);
+    const nf=addWallDays(nextMonday.y,nextMonday.m,nextMondayDate?.d || nextMonday.d,4);
     progressFriday=wallToInstant(nf.y,nf.m,nf.d,20,0,0,timeZone);
   }
   return {active,target,end:fridayEnd,monday,progressFriday};
