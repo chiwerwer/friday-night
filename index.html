@@ -1,81 +1,238 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>FRIDAY NIGHT · 解冻倒计时</title>
+<meta name="theme-color" content="#09060a">
+<title>FRIDAY NIGHT — Countdown</title>
+<meta name="description" content="A loud little countdown to Friday night.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Caveat:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,500;0,600;0,700;0,800;0,900;1,700;1,900&family=Rubik+Dirt&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
-:root{--pink:#ff2f86;--red:#ff3347;--ice:#65ecff;--ink:#06060a;--panel:rgba(8,7,12,.82);--line:rgba(255,47,134,.48)}
-*{box-sizing:border-box}html{background:#030306}body{margin:0;min-height:100vh;color:#fff;background:#030306;font-family:Inter,Arial,sans-serif;overflow-x:hidden}
-.page{position:relative;min-height:100svh;display:grid;grid-template-columns:minmax(410px,44%) 1fr;gap:clamp(20px,2vw,42px);padding:clamp(18px,2.3vw,42px);overflow:hidden;background:radial-gradient(circle at 18% 50%,rgba(255,24,105,.20),transparent 33%),radial-gradient(circle at 78% 28%,rgba(196,16,58,.18),transparent 34%),linear-gradient(115deg,#060509 0%,#140309 50%,#030306 100%)}
-.page:before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.22;background:repeating-linear-gradient(104deg,transparent 0 54px,rgba(255,49,131,.055) 55px 56px,transparent 57px 96px)}
-.hero,.dashboard{position:relative;z-index:1}.hero{min-height:calc(100svh - 2*clamp(18px,2.3vw,42px));display:grid;grid-template-rows:auto 1fr auto;border:1px solid rgba(255,255,255,.05);border-radius:26px;overflow:hidden;background:linear-gradient(180deg,rgba(11,5,12,.6),rgba(5,4,8,.2));box-shadow:0 22px 80px rgba(0,0,0,.35)}
-.hero-art{position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:center;padding:18px}.hero-art img{display:block;max-width:100%;width:auto;height:100%;object-fit:contain;object-position:center bottom;filter:saturate(1.08) contrast(1.04) drop-shadow(0 0 20px rgba(255,35,103,.28))}
-.hero:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(0,0,0,.02) 45%,rgba(3,3,7,.44) 100%)}
-.quote-mini,.quote-main{position:relative;z-index:3;font-family:Caveat,cursive;text-shadow:0 0 12px rgba(255,47,134,.34)}
-.quote-mini{align-self:start;margin:24px 26px;width:min(230px,58%);font-size:clamp(20px,1.7vw,28px);line-height:1.05;transform:rotate(-2deg)}.quote-mini:before,.quote-main:before{content:'“';display:block;color:var(--pink);font-size:64px;line-height:.52;font-family:Georgia,serif;text-shadow:0 0 12px var(--pink)}
-.quote-main{align-self:end;margin:0 26px 28px;width:min(360px,78%);font-size:clamp(17px,1.35vw,23px);line-height:1.02;transform:rotate(-2deg)}.quote-main strong{color:var(--pink);font-weight:700}.stamp{position:absolute;right:20px;bottom:18px;z-index:3;font-family:"Bebas Neue",sans-serif;font-size:clamp(52px,6vw,90px);line-height:.75;color:rgba(255,51,71,.32);transform:rotate(-8deg);letter-spacing:.02em}
-.dashboard{display:flex;flex-direction:column;justify-content:center;min-width:0}.nav{display:flex;justify-content:flex-end;gap:26px;margin-bottom:8px;color:#a9959e;font-size:11px;letter-spacing:.18em;text-transform:uppercase}.nav b{color:var(--pink);font-weight:600}.headline{margin:0;font-family:"Bebas Neue",sans-serif;font-size:clamp(92px,10.5vw,168px);line-height:.66;letter-spacing:.005em;text-transform:uppercase}.headline .f{color:#fff;text-shadow:0 0 24px rgba(255,255,255,.1)}.headline .n{display:block;color:var(--red);margin-left:6%;text-shadow:0 0 26px rgba(255,51,71,.18)}
-.tagline{align-self:center;margin:18px 0 20px;padding:8px 18px;border:1px solid var(--pink);border-radius:3px;color:#ffd9e8;font-size:11px;letter-spacing:.32em;box-shadow:0 0 14px rgba(255,47,134,.35),inset 0 0 14px rgba(255,47,134,.06)}
-.panel{background:linear-gradient(135deg,rgba(7,7,11,.90),rgba(13,4,9,.78));border:1px solid var(--line);border-radius:14px;box-shadow:0 0 24px rgba(255,35,104,.10),inset 0 0 28px rgba(255,35,104,.025);backdrop-filter:blur(8px)}
-.countdown{padding:18px 20px}.target{font-size:13px;color:#ddd;margin-bottom:12px}.ice{color:var(--ice);text-shadow:0 0 8px var(--ice)}.timer{display:grid;grid-template-columns:repeat(4,1fr)}.unit{text-align:center;padding:0 8px}.unit+.unit{border-left:1px solid rgba(255,255,255,.07)}.num{font-family:"Bebas Neue",sans-serif;font-size:clamp(52px,6.6vw,88px);line-height:.9;letter-spacing:.04em;color:#fff;text-shadow:0 0 6px #fff,0 0 18px var(--red);font-variant-numeric:tabular-nums}.label{margin-top:8px;color:#c7afb7;font-size:9px;letter-spacing:.12em}
-.progress-panel{padding:16px 20px;margin-top:12px}.progress-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:9px}.progress-head b{font-size:16px}.progress-head span{font-family:"Bebas Neue",sans-serif;color:var(--red);font-size:32px;letter-spacing:.03em}.progress{height:12px;border:1px solid rgba(255,60,99,.72);background:#14070b;border-radius:99px;overflow:hidden}.bar{height:100%;width:0;background:repeating-linear-gradient(130deg,#ff3548 0 16px,#ff6471 16px 28px);box-shadow:0 0 18px #ff3548;transition:width .4s linear}.range{display:flex;justify-content:space-between;margin-top:8px;color:#9f8a92;font-size:10px}.range .end{color:#d5c5cb}
-.clocks{display:grid;grid-template-columns:1fr 1fr;margin-top:12px;padding:14px 10px}.clock{text-align:center}.clock+.clock{border-left:1px solid rgba(255,255,255,.16)}.clock small{display:block;color:#bba8af;font-size:10px;margin-bottom:4px;letter-spacing:.06em}.clock b{font-family:"Bebas Neue",sans-serif;color:var(--red);font-size:clamp(30px,3.1vw,46px);letter-spacing:.08em;text-shadow:0 0 12px rgba(255,47,63,.35);font-variant-numeric:tabular-nums}.bottom-quote{margin-top:12px;padding:13px 18px;text-align:center;font-family:Caveat,cursive;font-size:clamp(19px,1.6vw,25px);color:#f4e9ed}.footer{text-align:center;margin-top:13px;color:#ec6d9c;font-size:9px;letter-spacing:.42em}.license-note{text-align:center;margin-top:8px;color:#5e5157;font-size:8px;letter-spacing:.08em}
-@media(max-width:980px){.page{grid-template-columns:1fr;padding:12px;gap:12px}.hero{min-height:68svh}.hero-art{padding:12px}.quote-mini{font-size:19px;margin:18px}.quote-main{font-size:16px;margin:0 18px 20px;width:55%}.stamp{font-size:58px}.dashboard{padding:8px 2px 20px}.nav{display:none}.headline{font-size:clamp(76px,22vw,118px);text-align:center}.headline .n{margin-left:0}.tagline{margin-top:12px}.num{font-size:clamp(42px,13vw,70px)}.label{font-size:7px}.clocks .clock b{font-size:clamp(27px,9vw,40px)}}
-@media(max-width:560px){.hero{min-height:62svh}.quote-mini{width:45%;font-size:16px}.quote-main{display:none}.stamp{font-size:48px}.countdown,.progress-panel{padding:13px 10px}.unit{padding:0 3px}.target{font-size:11px}.num{font-size:clamp(34px,12vw,54px)}.progress-head b{font-size:13px}.progress-head span{font-size:26px}.range{font-size:8px}.clock small{font-size:8px}.bottom-quote{font-size:18px}.footer{letter-spacing:.24em}}
+:root{
+  --black:#080608; --paper:#f6efd9; --hot:#ff2f78; --red:#ff2435;
+  --acid:#d8ff39; --cyan:#60f6ff; --muted:#b9aeb3;
+}
+*{box-sizing:border-box}
+html{background:var(--black)}
+body{margin:0;min-height:100vh;background:var(--black);color:#fff;font-family:"Barlow Condensed",Arial,sans-serif;overflow-x:hidden}
+button,select{font:inherit}
+a{color:inherit}
+.page{position:relative;min-height:100svh;overflow:hidden;background:
+  radial-gradient(circle at 77% 15%,rgba(255,47,120,.2),transparent 27%),
+  radial-gradient(circle at 87% 78%,rgba(216,255,57,.08),transparent 25%),
+  linear-gradient(125deg,#060507 0%,#16060b 55%,#090609 100%)}
+.page:before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.22;mix-blend-mode:screen;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E")}
+.marquee{position:relative;z-index:10;display:flex;overflow:hidden;background:var(--acid);color:#090909;border-bottom:3px solid #090909;transform:rotate(-.45deg) scale(1.01);transform-origin:center;box-shadow:0 5px 0 var(--hot)}
+.marquee-track{display:flex;min-width:max-content;animation:scroll 24s linear infinite}
+.marquee span{padding:8px 26px;font-family:"Space Mono",monospace;font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase}
+@keyframes scroll{to{transform:translateX(-50%)}}
+.shell{position:relative;z-index:2;display:grid;grid-template-columns:minmax(390px,44vw) minmax(0,1fr);min-height:calc(100svh - 36px)}
+.portrait{position:relative;min-height:650px;overflow:hidden;border-right:3px solid var(--paper);background:#8e1526}
+.portrait:before{content:"";position:absolute;inset:0;z-index:1;background:
+  linear-gradient(180deg,transparent 42%,rgba(8,6,8,.08) 62%,rgba(8,6,8,.72) 100%),
+  repeating-linear-gradient(118deg,transparent 0 66px,rgba(255,255,255,.08) 67px 70px,transparent 71px 116px);pointer-events:none}
+.portrait img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center center;filter:saturate(1.12) contrast(1.05);z-index:0}
+.tape{position:absolute;z-index:3;background:var(--paper);color:#0a0809;padding:8px 18px;font-family:"Space Mono",monospace;font-weight:700;font-size:11px;letter-spacing:.08em;text-transform:uppercase;box-shadow:4px 4px 0 rgba(0,0,0,.55)}
+.tape.top{top:32px;left:-10px;transform:rotate(-3deg)}
+.tape.bottom{bottom:30px;right:-12px;transform:rotate(3deg);background:var(--cyan)}
+.portrait-title{position:absolute;z-index:3;left:26px;bottom:100px;margin:0;font-family:"Rubik Dirt",Impact,sans-serif;font-size:clamp(66px,7vw,120px);line-height:.72;letter-spacing:-.02em;text-transform:uppercase;text-shadow:5px 5px 0 #0a0809,9px 9px 0 var(--hot)}
+.portrait-title em{display:block;color:var(--acid);font-style:normal;margin-left:28px}
+.main{position:relative;display:flex;flex-direction:column;justify-content:center;padding:clamp(26px,4.2vw,72px);min-width:0}
+.topline{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:22px}
+.kicker{font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--acid)}
+.zone-wrap{display:flex;align-items:center;gap:9px;font-family:"Space Mono",monospace;font-size:10px;color:#ddd}
+.zone-wrap select{appearance:none;border:1px solid rgba(255,255,255,.36);border-radius:0;background:#0b080b;color:#fff;padding:8px 30px 8px 10px;font-family:"Space Mono",monospace;font-size:10px;background-image:linear-gradient(45deg,transparent 50%,var(--hot) 50%),linear-gradient(135deg,var(--hot) 50%,transparent 50%);background-position:calc(100% - 13px) 12px,calc(100% - 9px) 12px;background-size:4px 4px;background-repeat:no-repeat}
+.status{margin:0 0 4px;font-family:"Rubik Dirt",Impact,sans-serif;font-size:clamp(52px,6.9vw,116px);line-height:.83;text-transform:uppercase;letter-spacing:-.015em;color:#fff;text-wrap:balance}
+.status .accent{color:var(--hot);text-shadow:3px 3px 0 var(--paper)}
+.substatus{font-family:"Space Mono",monospace;font-size:clamp(10px,1vw,13px);line-height:1.55;color:#c4b8bd;max-width:740px;margin:14px 0 26px}
+.countdown{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:3px solid var(--paper);border-bottom:3px solid var(--paper);background:rgba(6,5,7,.52);box-shadow:7px 7px 0 var(--hot)}
+.unit{position:relative;padding:clamp(12px,1.7vw,22px) 10px 14px;text-align:center;min-width:0}
+.unit+.unit{border-left:1px dashed rgba(246,239,217,.35)}
+.num{font-size:clamp(48px,6vw,96px);font-weight:900;font-style:italic;line-height:.86;font-variant-numeric:tabular-nums;letter-spacing:-.03em;text-shadow:0 0 22px rgba(255,47,120,.26)}
+.label{margin-top:10px;font-family:"Space Mono",monospace;font-size:8px;letter-spacing:.16em;color:var(--acid);text-transform:uppercase;white-space:nowrap}
+.quote-card{position:relative;margin-top:28px;border:1px solid rgba(255,255,255,.23);padding:22px 24px 20px;background:rgba(15,9,13,.62);box-shadow:inset 0 0 40px rgba(255,47,120,.035)}
+.quote-card:before{content:"LYRIC MODE";position:absolute;top:-10px;left:16px;padding:3px 8px;background:var(--paper);color:#0a0809;font-family:"Space Mono",monospace;font-size:8px;font-weight:700;letter-spacing:.12em}
+.quote{margin:0;font-size:clamp(27px,3vw,48px);font-weight:900;font-style:italic;line-height:1;text-transform:uppercase;letter-spacing:.01em}
+.quote strong{color:var(--hot)}
+.source{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-top:13px;color:#968a90;font-family:"Space Mono",monospace;font-size:8px;line-height:1.5}
+.source a{text-decoration-color:var(--hot);text-underline-offset:3px}
+.progress-wrap{margin-top:22px}
+.progress-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:8px;font-family:"Space Mono",monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#aaa0a5}
+.progress-head b{font-size:18px;color:var(--acid)}
+.progress{height:15px;border:2px solid var(--paper);padding:2px;background:#060507;transform:skewX(-8deg)}
+.bar{height:100%;width:0;background:repeating-linear-gradient(135deg,var(--hot) 0 17px,var(--red) 17px 34px);box-shadow:0 0 16px rgba(255,47,120,.55);transition:width .4s linear}
+.footer{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-top:22px;color:#6f666a;font-family:"Space Mono",monospace;font-size:8px;line-height:1.5}
+.footer .live{color:var(--cyan)}
+.friday .page{background:radial-gradient(circle at 55% 45%,rgba(255,47,120,.32),transparent 36%),linear-gradient(125deg,#050406,#1e0711 55%,#060406 100%)}
+.friday .status{animation:jitter .42s steps(2,end) infinite alternate}
+.friday .countdown{box-shadow:7px 7px 0 var(--acid)}
+.friday .portrait:after{content:"FRIDAY NIGHT!!!";position:absolute;z-index:2;inset:auto -80px 46% -80px;padding:8px;background:var(--acid);color:#090909;font-family:"Rubik Dirt",Impact,sans-serif;text-align:center;font-size:clamp(24px,3vw,48px);transform:rotate(-9deg);border:3px solid #090909}
+@keyframes jitter{0%{transform:translate(0,0) rotate(-.2deg)}100%{transform:translate(1px,-1px) rotate(.2deg)}}
+@media(max-width:980px){
+  .shell{grid-template-columns:1fr;min-height:0}.portrait{min-height:min(74svh,720px);border-right:0;border-bottom:3px solid var(--paper)}
+  .portrait img{object-position:center center}.portrait-title{font-size:clamp(66px,18vw,116px);bottom:86px}.main{padding:28px 18px 42px}.status{font-size:clamp(54px,14vw,96px)}
+}
+@media(max-width:560px){
+  .marquee span{font-size:9px;padding:7px 18px}.portrait{min-height:58svh}.tape{font-size:8px}.portrait-title{left:16px;bottom:76px;font-size:clamp(54px,18vw,86px)}
+  .topline{align-items:flex-start;flex-direction:column}.zone-wrap{width:100%;justify-content:space-between}.zone-wrap select{max-width:70%}.status{font-size:clamp(47px,15vw,72px)}
+  .substatus{font-size:9px}.countdown{box-shadow:4px 4px 0 var(--hot)}.unit{padding:13px 3px 12px}.num{font-size:clamp(38px,14vw,60px)}.label{font-size:6px;letter-spacing:.08em}
+  .quote-card{padding:20px 16px 16px}.quote{font-size:clamp(24px,8vw,38px)}.source{align-items:flex-start;flex-direction:column}.footer{align-items:flex-start;flex-direction:column;gap:7px}
+}
+@media(prefers-reduced-motion:reduce){.marquee-track,.friday .status{animation:none}}
 </style>
 </head>
 <body>
 <div class="page">
-  <section class="hero">
-    <div class="hero-art"><img src="hero-person.webp" alt="Friday Night portrait"></div>
-    <div class="quote-mini">I've been working all week,<br>nothing exciting</div>
-    <div></div>
-    <div class="quote-main">I wanna keep movin' all night<br>I wanna dance all night<br>I wanna drink all night<br>I wanna party all night<br>I wanna enjoy this night<br><strong>Because it’s Friday night!!!<br>Because tonight it’s Friday night!!!</strong></div>
-    <div class="stamp">LET'S<br>GO!</div>
-  </section>
+  <div class="marquee" aria-hidden="true"><div class="marquee-track">
+    <span>Friday Night • Friday Night • Friday Night • Friday Night • Friday Night • Friday Night •</span>
+    <span>Friday Night • Friday Night • Friday Night • Friday Night • Friday Night • Friday Night •</span>
+  </div></div>
 
-  <main class="dashboard">
-    <div class="nav"><b>COUNTDOWN</b><span>TIME</span><span>PROGRESS</span><span>QUOTE</span></div>
-    <h1 class="headline"><span class="f">FRIDAY</span><span class="n">NIGHT</span></h1>
-    <div class="tagline">ALL NIGHT. EVERY FRIDAY.</div>
+  <div class="shell">
+    <aside class="portrait" aria-label="Friday Night portrait">
+      <img src="hero-person.webp" alt="Friday Night meme portrait">
+      <div class="tape top">working all week / waiting all week</div>
+      <h1 class="portrait-title">Friday <em>Night</em></h1>
+      <div class="tape bottom">no hesitation after 20:00</div>
+    </aside>
 
-    <section class="panel countdown">
-      <div class="target"><span class="ice">❄</span> 距离本周五晚上 20:00（PT）还剩</div>
-      <div class="timer">
-        <div class="unit"><div class="num" id="days">00</div><div class="label">DAYS · 天</div></div>
-        <div class="unit"><div class="num" id="hours">00</div><div class="label">HOURS · 小时</div></div>
-        <div class="unit"><div class="num" id="minutes">00</div><div class="label">MINUTES · 分钟</div></div>
-        <div class="unit"><div class="num" id="seconds">00</div><div class="label">SECONDS · 秒</div></div>
+    <main class="main">
+      <div class="topline">
+        <div class="kicker" id="nowLabel">NEXT RELEASE // FRIDAY 20:00</div>
+        <label class="zone-wrap">TIME ZONE
+          <select id="zone" aria-label="Countdown timezone">
+            <option value="America/Los_Angeles">Pacific Time</option>
+            <option value="local">My local time</option>
+            <option value="America/New_York">Eastern Time</option>
+            <option value="Asia/Shanghai">Beijing Time</option>
+            <option value="Europe/London">London Time</option>
+            <option value="UTC">UTC</option>
+          </select>
+        </label>
       </div>
-    </section>
 
-    <section class="panel progress-panel">
-      <div class="progress-head"><b>本周解冻进度</b><span id="percent">0%</span></div>
-      <div class="progress"><div class="bar" id="bar"></div></div>
-      <div class="range"><span>周一 00:00（PT）</span><span class="end">❄ 周五 20:00（PT）</span></div>
-    </section>
+      <h2 class="status" id="status">WAITING FOR <span class="accent">FRIDAY NIGHT</span></h2>
+      <p class="substatus" id="substatus">Countdown to Friday at 8:00 PM. Friday Night mode runs until Saturday at 6:00 AM.</p>
 
-    <section class="panel clocks">
-      <div class="clock"><small>北京时间</small><b id="beijing">--:--:--</b></div>
-      <div class="clock"><small>加州时间</small><b id="california">--:--:--</b></div>
-    </section>
+      <section class="countdown" aria-label="Countdown to Friday night">
+        <div class="unit"><div class="num" id="days">00</div><div class="label">days</div></div>
+        <div class="unit"><div class="num" id="hours">00</div><div class="label">hours</div></div>
+        <div class="unit"><div class="num" id="minutes">00</div><div class="label">minutes</div></div>
+        <div class="unit"><div class="num" id="seconds">00</div><div class="label">seconds</div></div>
+      </section>
 
-    <section class="panel bottom-quote">Friday night is not a time, it’s a state of mind.</section>
-    <div class="footer">STAY FROSTED · SEE YOU SOON</div>
-    <div class="license-note">Typography: Bebas Neue · Caveat · Inter — SIL Open Font License 1.1</div>
-  </main>
+      <section class="quote-card">
+        <p class="quote" id="quote">“I was waiting all week, <strong>so boring...</strong>”</p>
+        <div class="source"><span>Short lyric excerpt — “Friday Night”, Becky Martin</span><a href="https://legacy.reverbnation.com/wwebeckmartin/song/19042845" target="_blank" rel="noopener noreferrer">LYRIC SOURCE ↗</a></div>
+      </section>
+
+      <div class="progress-wrap">
+        <div class="progress-head"><span>weekly defrost progress</span><b id="percent">0.0%</b></div>
+        <div class="progress" aria-label="Progress from Monday to Friday night"><div class="bar" id="bar"></div></div>
+      </div>
+
+      <div class="footer">
+        <span class="live" id="clock">LIVE // --:--:--</span>
+        <span>RUBIK DIRT · BARLOW CONDENSED · SPACE MONO — OPEN FONT LICENSE</span>
+      </div>
+    </main>
+  </div>
 </div>
+
 <script>
-function californiaParts(date){const parts=new Intl.DateTimeFormat('en-US',{timeZone:'America/Los_Angeles',year:'numeric',month:'2-digit',day:'2-digit',weekday:'short',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false}).formatToParts(date);return Object.fromEntries(parts.map(p=>[p.type,p.value]))}
-function laWallToDate(y,m,d,h=0,min=0,s=0){const guess=new Date(Date.UTC(y,m-1,d,h,min,s));const shown=californiaParts(guess);const asUTC=Date.UTC(+shown.year,+shown.month-1,+shown.day,+shown.hour%24,+shown.minute,+shown.second);const wanted=Date.UTC(y,m-1,d,h,min,s);return new Date(guess.getTime()+(wanted-asUTC))}
-function schedule(now=new Date()){const p=californiaParts(now),y=+p.year,m=+p.month,d=+p.day;const weekday=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].indexOf(p.weekday);let toFriday=(5-weekday+7)%7;let target=laWallToDate(y,m,d+toFriday,20);if(target<=now)target=laWallToDate(y,m,d+toFriday+7,20);const sinceMonday=(weekday+6)%7;return{target,monday:laWallToDate(y,m,d-sinceMonday),friday:laWallToDate(y,m,d-sinceMonday+4,20)}}
+const els={
+  zone:document.getElementById('zone'),days:document.getElementById('days'),hours:document.getElementById('hours'),minutes:document.getElementById('minutes'),seconds:document.getElementById('seconds'),
+  status:document.getElementById('status'),substatus:document.getElementById('substatus'),quote:document.getElementById('quote'),percent:document.getElementById('percent'),bar:document.getElementById('bar'),clock:document.getElementById('clock'),nowLabel:document.getElementById('nowLabel')
+};
+
+const storedZone=localStorage.getItem('fridayNightZone');
+if(storedZone && [...els.zone.options].some(o=>o.value===storedZone)) els.zone.value=storedZone;
+els.zone.addEventListener('change',()=>{localStorage.setItem('fridayNightZone',els.zone.value);update()});
+
+function effectiveZone(){return els.zone.value==='local' ? Intl.DateTimeFormat().resolvedOptions().timeZone : els.zone.value}
+function parts(date,timeZone){
+  const f=new Intl.DateTimeFormat('en-US',{timeZone,year:'numeric',month:'2-digit',day:'2-digit',weekday:'short',hour:'2-digit',minute:'2-digit',second:'2-digit',hourCycle:'h23'});
+  return Object.fromEntries(f.formatToParts(date).filter(p=>p.type!=='literal').map(p=>[p.type,p.value]));
+}
+function wallToInstant(y,m,d,h,min,s,timeZone){
+  let t=Date.UTC(y,m-1,d,h,min,s);
+  for(let i=0;i<4;i++){
+    const p=parts(new Date(t),timeZone);
+    const shown=Date.UTC(+p.year,+p.month-1,+p.day,+p.hour,+p.minute,+p.second);
+    const wanted=Date.UTC(y,m-1,d,h,min,s);
+    const delta=wanted-shown;
+    if(Math.abs(delta)<1000) break;
+    t+=delta;
+  }
+  return new Date(t);
+}
+function addWallDays(y,m,d,days){
+  const x=new Date(Date.UTC(y,m-1,d+days,12));
+  return {y:x.getUTCFullYear(),m:x.getUTCMonth()+1,d:x.getUTCDate()};
+}
+function schedule(now,timeZone){
+  const p=parts(now,timeZone), y=+p.year,m=+p.month,d=+p.day;
+  const weekday=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].indexOf(p.weekday);
+  const fridayDate=addWallDays(y,m,d,(5-weekday+7)%7);
+  const fridayStart=wallToInstant(fridayDate.y,fridayDate.m,fridayDate.d,20,0,0,timeZone);
+  const saturdayDate=addWallDays(fridayDate.y,fridayDate.m,fridayDate.d,1);
+  const fridayEnd=wallToInstant(saturdayDate.y,saturdayDate.m,saturdayDate.d,6,0,0,timeZone);
+  let active=now>=fridayStart && now<fridayEnd;
+  let target=fridayStart;
+  if(now>=fridayEnd || (!active && target<=now)){
+    const next=addWallDays(fridayDate.y,fridayDate.m,fridayDate.d,7);
+    target=wallToInstant(next.y,next.m,next.d,20,0,0,timeZone);
+  }
+  const sinceMonday=(weekday+6)%7;
+  const mondayDate=addWallDays(y,m,d,-sinceMonday);
+  let monday=wallToInstant(mondayDate.y,mondayDate.m,mondayDate.d,0,0,0,timeZone);
+  let progressFriday=wallToInstant(addWallDays(mondayDate.y,mondayDate.m,mondayDate.d,4).y,addWallDays(mondayDate.y,mondayDate.m,mondayDate.d,4).m,addWallDays(mondayDate.y,mondayDate.m,mondayDate.d,4).d,20,0,0,timeZone);
+  if(weekday===0 || weekday===6){
+    const nextMonday=addWallDays(mondayDate.y,mondayDate.m,mondayDate.d,7);
+    monday=wallToInstant(nextMonday.y,nextMonday.m,nextMonday.d,0,0,0,timeZone);
+    const nf=addWallDays(nextMonday.y,nextMonday.m,nextMonday.d,4);
+    progressFriday=wallToInstant(nf.y,nf.m,nf.d,20,0,0,timeZone);
+  }
+  return {active,target,end:fridayEnd,monday,progressFriday};
+}
 function pad(n){return String(n).padStart(2,'0')}
-function update(){const now=new Date(),{target,monday,friday}=schedule(now);const remain=Math.max(0,target-now),sec=Math.floor(remain/1000);days.textContent=pad(Math.floor(sec/86400));hours.textContent=pad(Math.floor(sec%86400/3600));minutes.textContent=pad(Math.floor(sec%3600/60));seconds.textContent=pad(sec%60);const pct=Math.max(0,Math.min(100,(now-monday)/(friday-monday)*100));bar.style.width=pct+'%';percent.textContent=pct.toFixed(1)+'%';beijing.textContent=new Intl.DateTimeFormat('zh-CN',{timeZone:'Asia/Shanghai',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false}).format(now);california.textContent=new Intl.DateTimeFormat('zh-CN',{timeZone:'America/Los_Angeles',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false}).format(now)}
-update();setInterval(update,250)
+function zoneName(timeZone){
+  if(els.zone.value==='local') return 'LOCAL';
+  const names={'America/Los_Angeles':'PACIFIC','America/New_York':'EASTERN','Asia/Shanghai':'BEIJING','Europe/London':'LONDON','UTC':'UTC'};
+  return names[timeZone]||timeZone;
+}
+function update(){
+  const now=new Date(), timeZone=effectiveZone();
+  const s=schedule(now,timeZone);
+  const destination=s.active?s.end:s.target;
+  const remaining=Math.max(0,destination-now), totalSeconds=Math.floor(remaining/1000);
+  els.days.textContent=pad(Math.floor(totalSeconds/86400));
+  els.hours.textContent=pad(Math.floor(totalSeconds%86400/3600));
+  els.minutes.textContent=pad(Math.floor(totalSeconds%3600/60));
+  els.seconds.textContent=pad(totalSeconds%60);
+  document.documentElement.classList.toggle('friday',s.active);
+  if(s.active){
+    els.status.innerHTML='IT’S <span class="accent">FRIDAY NIGHT!!!</span>';
+    els.substatus.textContent='Friday Night mode is live. The timer now counts down to Saturday 6:00 AM.';
+    els.quote.innerHTML='“Because tonight it’s <strong>Friday night!!!</strong>”';
+    els.nowLabel.textContent='STATUS // FRIDAY NIGHT IS LIVE';
+  }else{
+    els.status.innerHTML='WAITING FOR <span class="accent">FRIDAY NIGHT</span>';
+    els.substatus.textContent='Countdown to Friday at 8:00 PM. Friday Night mode runs until Saturday at 6:00 AM.';
+    els.quote.innerHTML='“I was waiting all week, <strong>so boring...</strong>”';
+    els.nowLabel.textContent='NEXT RELEASE // FRIDAY 20:00';
+  }
+  let pct=(now-s.monday)/(s.progressFriday-s.monday)*100;
+  if(s.active) pct=100;
+  pct=Math.max(0,Math.min(100,pct));
+  els.bar.style.width=pct+'%';
+  els.percent.textContent=pct.toFixed(1)+'%';
+  const time=new Intl.DateTimeFormat('en-US',{timeZone,hour:'2-digit',minute:'2-digit',second:'2-digit',hourCycle:'h23'}).format(now);
+  els.clock.textContent='LIVE // '+zoneName(timeZone)+' '+time;
+}
+update();setInterval(update,250);
 </script>
 </body>
 </html>
