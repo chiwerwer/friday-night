@@ -5,12 +5,11 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>FRIDAY NIGHT · 解冻倒计时</title>
 <style>
-:root{--pink:#ff2d88;--red:#ff2f3f;--ice:#66ecff;--panel:rgba(5,5,8,.76);--line:rgba(255,52,120,.52)}
-*{box-sizing:border-box}html{background:#020204}body{margin:0;min-height:100vh;background:#020204;color:#fff;font-family:Arial,"PingFang SC","Microsoft YaHei",sans-serif;overflow-x:hidden}.stage{position:relative;min-height:100vh;overflow:hidden;background:radial-gradient(circle at 18% 42%,rgba(255,20,94,.20),transparent 31%),radial-gradient(circle at 78% 25%,rgba(191,13,48,.22),transparent 31%),linear-gradient(115deg,#020204 0%,#100309 48%,#020204 100%)}.stage:before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.24;background:repeating-linear-gradient(103deg,transparent 0 37px,rgba(255,45,121,.055) 38px 39px,transparent 40px 72px)}.stage:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,transparent 0 42%,rgba(0,0,0,.32) 48%,rgba(0,0,0,.08) 100%)}
-.left{position:absolute;inset:0 auto 0 0;width:44%;z-index:2}.person{position:absolute;left:7%;bottom:-1vh;width:90%;height:96vh;display:flex;align-items:flex-end;justify-content:center;filter:drop-shadow(0 0 10px rgba(255,40,80,.9)) drop-shadow(0 0 28px rgba(255,20,95,.42))}.person img{width:100%;height:100%;object-fit:contain;object-position:center bottom}.person:after{content:"";position:absolute;left:10%;right:6%;bottom:1%;height:26%;background:linear-gradient(transparent,rgba(0,0,0,.34));pointer-events:none}
-.quote-small,.quote-big{position:absolute;z-index:4;font-family:"Comic Sans MS","Bradley Hand",cursive;font-style:italic;text-shadow:0 0 10px rgba(255,45,136,.38)}.quote-small{left:3vw;top:8vh;width:175px;font-size:clamp(15px,1.35vw,21px);line-height:1.35;color:#fff;transform:rotate(-3deg)}.quote-small:before,.quote-big:before{content:'“';display:block;color:var(--pink);font-size:56px;line-height:.55;font-style:normal;text-shadow:0 0 12px var(--pink)}.quote-big{left:3vw;bottom:4vh;width:min(31vw,430px);font-size:clamp(14px,1.25vw,20px);line-height:1.27;color:#fff;transform:rotate(-3deg)}.quote-big strong{color:var(--pink);font-weight:500}.graffiti{position:absolute;left:3vw;bottom:2vh;color:var(--red);font-size:clamp(34px,5vw,78px);font-weight:950;font-style:italic;letter-spacing:-.08em;transform:rotate(-7deg);opacity:.30;z-index:1}
-.right{position:relative;z-index:5;margin-left:45%;width:55%;min-height:100vh;padding:4vh 4vw 3vh 2.5vw;display:flex;flex-direction:column;justify-content:center}.topline{font-size:11px;letter-spacing:.35em;color:#d6a7b8;text-align:right;margin-bottom:1.1vh}.title{font-size:clamp(62px,8.2vw,122px);font-weight:950;font-style:italic;line-height:.72;letter-spacing:-.075em;margin:0 0 1.5vh;text-transform:uppercase;text-shadow:0 0 22px rgba(255,20,74,.24)}.title .friday{color:#fff}.title .night{display:block;color:var(--red);margin-left:5%}.tagline{display:inline-block;align-self:center;border:1px solid var(--pink);box-shadow:0 0 13px rgba(255,45,136,.5),inset 0 0 13px rgba(255,45,136,.10);padding:7px 18px;margin:0 0 2vh;font-size:12px;letter-spacing:.30em;color:#ffd7e6}.panel{background:linear-gradient(135deg,rgba(7,7,11,.84),rgba(13,4,9,.74));border:1px solid var(--line);box-shadow:0 0 18px rgba(255,35,104,.12),inset 0 0 22px rgba(255,35,104,.035);border-radius:10px;padding:16px 20px;margin-bottom:12px;backdrop-filter:blur(8px)}.target{font-size:14px;color:#eee;margin-bottom:11px}.target .ice{color:var(--ice);text-shadow:0 0 8px var(--ice)}.timer{display:flex;align-items:flex-start}.unit{flex:1;text-align:center;min-width:0}.unit+.unit{border-left:1px solid rgba(255,255,255,.06)}.num{font-family:"Courier New",monospace;color:#fff;font-size:clamp(34px,4.8vw,70px);font-weight:700;line-height:1;text-shadow:0 0 6px #fff,0 0 17px var(--red);font-variant-numeric:tabular-nums}.label{margin-top:7px;color:#c9afb7;font-size:9px;letter-spacing:.08em}.progress-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:8px}.progress-head b{font-size:17px}.progress-head span{color:var(--red);font-size:27px;font-weight:900}.progress{height:12px;border:1px solid rgba(255,60,99,.72);background:#13070b;border-radius:99px;overflow:hidden}.bar{height:100%;width:0;background:repeating-linear-gradient(130deg,#ff3548 0 16px,#ff5665 16px 27px);box-shadow:0 0 18px #ff3548;transition:width .45s linear}.range{display:flex;justify-content:space-between;margin-top:7px;color:#a58d95;font-size:10px}.range .end{color:#d8c8ce}.clocks{display:flex;gap:0;padding:13px 10px}.clock{flex:1;text-align:center}.clock+.clock{border-left:1px solid rgba(255,255,255,.16)}.clock small{display:block;font-size:11px;color:#b9a3ab;margin-bottom:5px}.clock b{font-family:"Courier New",monospace;font-size:clamp(22px,2.6vw,36px);color:var(--red);text-shadow:0 0 12px rgba(255,47,63,.45);font-variant-numeric:tabular-nums}.bottom-quote{font-family:Georgia,serif;font-style:italic;text-align:center;color:#e8dce0;font-size:13px;letter-spacing:.04em;padding:13px}.footer{text-align:center;margin-top:2px;color:#f06a9a;font-size:10px;letter-spacing:.42em}.crown{position:absolute;right:3.5vw;top:3vh;color:var(--pink);font-size:40px;z-index:7;transform:rotate(8deg);text-shadow:0 0 14px var(--pink)}
-@media(max-width:900px){body{overflow-y:auto}.stage{min-height:100svh;overflow:visible;padding-bottom:22px}.stage:after{display:none}.left{position:relative;width:100%;height:62svh;overflow:hidden}.person{left:50%;transform:translateX(-50%);width:min(96vw,620px);height:61svh;bottom:0}.quote-small{left:15px;top:45px;width:145px;font-size:14px}.quote-big{display:none}.graffiti{display:none}.right{margin-left:0;width:100%;min-height:auto;padding:0 12px 24px;justify-content:flex-start}.topline{display:none}.title{position:absolute;top:17px;right:12px;z-index:6;font-size:clamp(44px,15vw,72px);width:61%;text-align:right;line-height:.76}.title .night{margin-left:0}.tagline{font-size:9px;letter-spacing:.16em;margin:0 auto 10px;padding:6px 10px}.panel{padding:12px 10px;margin-bottom:9px}.target{font-size:11px;margin-bottom:7px}.num{font-size:clamp(28px,9vw,42px)}.label{font-size:7px}.progress-head b{font-size:13px}.progress-head span{font-size:20px}.clock small{font-size:9px}.clock b{font-size:clamp(18px,6vw,27px)}.bottom-quote{font-size:11px}.crown{top:8px;right:9px;font-size:28px}.footer{font-size:8px;letter-spacing:.24em}}
+:root{--pink:#ff2d88;--red:#ff2f3f;--ice:#66ecff;--line:rgba(255,52,120,.52)}
+*{box-sizing:border-box}html{background:#020204}body{margin:0;min-height:100vh;background:#020204;color:#fff;font-family:Arial,"PingFang SC","Microsoft YaHei",sans-serif;overflow-x:hidden}.stage{position:relative;min-height:100vh;overflow:hidden;background:radial-gradient(circle at 18% 42%,rgba(255,20,94,.20),transparent 31%),radial-gradient(circle at 78% 25%,rgba(191,13,48,.22),transparent 31%),linear-gradient(115deg,#020204 0%,#100309 48%,#020204 100%)}.stage:before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.24;background:repeating-linear-gradient(103deg,transparent 0 37px,rgba(255,45,121,.055) 38px 39px,transparent 40px 72px)}
+.left{position:absolute;left:0;top:0;bottom:0;width:43%;z-index:2;overflow:visible}.person{position:absolute;left:50%;bottom:1.5vh;transform:translateX(-50%);width:min(39vw,650px);height:94vh;display:flex;align-items:flex-end;justify-content:center;filter:drop-shadow(0 0 9px rgba(255,40,80,.95)) drop-shadow(0 0 28px rgba(255,20,95,.42));z-index:2}.person img{display:block;width:100%;height:100%;object-fit:contain;object-position:center bottom}.quote-small,.quote-big{position:absolute;z-index:5;font-family:"Comic Sans MS","Bradley Hand",cursive;font-style:italic;text-shadow:0 0 10px rgba(255,45,136,.38)}.quote-small{left:2.5vw;top:7vh;width:175px;font-size:clamp(14px,1.25vw,20px);line-height:1.35;color:#fff;transform:rotate(-3deg)}.quote-small:before,.quote-big:before{content:'“';display:block;color:var(--pink);font-size:54px;line-height:.55;font-style:normal;text-shadow:0 0 12px var(--pink)}.quote-big{left:2.5vw;bottom:5vh;width:min(29vw,390px);font-size:clamp(13px,1.12vw,18px);line-height:1.28;color:#fff;transform:rotate(-3deg)}.quote-big strong{color:var(--pink);font-weight:500}.graffiti{position:absolute;left:2.5vw;bottom:1vh;color:var(--red);font-size:clamp(32px,4.5vw,68px);font-weight:950;font-style:italic;letter-spacing:-.08em;transform:rotate(-7deg);opacity:.22;z-index:1}
+.right{position:relative;z-index:6;margin-left:44%;width:56%;min-height:100vh;padding:3.3vh 3.6vw 2.5vh 2.2vw;display:flex;flex-direction:column;justify-content:center}.topline{font-size:11px;letter-spacing:.35em;color:#d6a7b8;text-align:right;margin-bottom:1vh}.title{font-size:clamp(60px,7.7vw,116px);font-weight:950;font-style:italic;line-height:.72;letter-spacing:-.075em;margin:0 0 1.3vh;text-transform:uppercase;text-shadow:0 0 22px rgba(255,20,74,.24)}.title .friday{color:#fff}.title .night{display:block;color:var(--red);margin-left:5%}.tagline{display:inline-block;align-self:center;border:1px solid var(--pink);box-shadow:0 0 13px rgba(255,45,136,.5),inset 0 0 13px rgba(255,45,136,.10);padding:7px 18px;margin:0 0 1.6vh;font-size:12px;letter-spacing:.30em;color:#ffd7e6}.panel{background:linear-gradient(135deg,rgba(7,7,11,.88),rgba(13,4,9,.80));border:1px solid var(--line);box-shadow:0 0 18px rgba(255,35,104,.12),inset 0 0 22px rgba(255,35,104,.035);border-radius:10px;padding:15px 19px;margin-bottom:10px;backdrop-filter:blur(8px)}.target{font-size:14px;color:#eee;margin-bottom:10px}.target .ice{color:var(--ice);text-shadow:0 0 8px var(--ice)}.timer{display:flex;align-items:flex-start}.unit{flex:1;text-align:center;min-width:0}.unit+.unit{border-left:1px solid rgba(255,255,255,.06)}.num{font-family:"Courier New",monospace;color:#fff;font-size:clamp(34px,4.55vw,66px);font-weight:700;line-height:1;text-shadow:0 0 6px #fff,0 0 17px var(--red);font-variant-numeric:tabular-nums}.label{margin-top:7px;color:#c9afb7;font-size:9px;letter-spacing:.08em}.progress-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:8px}.progress-head b{font-size:17px}.progress-head span{color:var(--red);font-size:27px;font-weight:900}.progress{height:12px;border:1px solid rgba(255,60,99,.72);background:#13070b;border-radius:99px;overflow:hidden}.bar{height:100%;width:0;background:repeating-linear-gradient(130deg,#ff3548 0 16px,#ff5665 16px 27px);box-shadow:0 0 18px #ff3548;transition:width .45s linear}.range{display:flex;justify-content:space-between;margin-top:7px;color:#a58d95;font-size:10px}.range .end{color:#d8c8ce}.clocks{display:flex;gap:0;padding:12px 10px}.clock{flex:1;text-align:center}.clock+.clock{border-left:1px solid rgba(255,255,255,.16)}.clock small{display:block;font-size:11px;color:#b9a3ab;margin-bottom:5px}.clock b{font-family:"Courier New",monospace;font-size:clamp(22px,2.5vw,34px);color:var(--red);text-shadow:0 0 12px rgba(255,47,63,.45);font-variant-numeric:tabular-nums}.bottom-quote{font-family:Georgia,serif;font-style:italic;text-align:center;color:#e8dce0;font-size:13px;letter-spacing:.04em;padding:12px}.footer{text-align:center;margin-top:2px;color:#f06a9a;font-size:10px;letter-spacing:.42em}.crown{position:absolute;right:3vw;top:2.5vh;color:var(--pink);font-size:40px;z-index:7;transform:rotate(8deg);text-shadow:0 0 14px var(--pink)}
+@media(max-width:900px){body{overflow-y:auto}.stage{min-height:100svh;overflow:visible;padding-bottom:20px}.left{position:relative;width:100%;height:76svh;overflow:visible}.person{left:50%;bottom:0;transform:translateX(-50%);width:min(88vw,560px);height:74svh}.quote-small{left:14px;top:34px;width:142px;font-size:13px}.quote-big{display:none}.graffiti{display:none}.right{margin-left:0;width:100%;min-height:auto;padding:0 12px 24px;justify-content:flex-start}.topline{display:none}.title{position:absolute;top:16px;right:12px;z-index:7;font-size:clamp(42px,14vw,68px);width:58%;text-align:right;line-height:.76}.title .night{margin-left:0}.tagline{font-size:9px;letter-spacing:.16em;margin:0 auto 10px;padding:6px 10px}.panel{padding:12px 10px;margin-bottom:9px}.target{font-size:11px;margin-bottom:7px}.num{font-size:clamp(28px,9vw,42px)}.label{font-size:7px}.progress-head b{font-size:13px}.progress-head span{font-size:20px}.clock small{font-size:9px}.clock b{font-size:clamp(18px,6vw,27px)}.bottom-quote{font-size:11px}.crown{top:8px;right:9px;font-size:28px}.footer{font-size:8px;letter-spacing:.24em}}
 </style>
 </head>
 <body>
@@ -21,71 +20,25 @@
     <div class="quote-big">I wanna keep movin' all night<br>I wanna dance all night<br>I wanna drink all night<br>I wanna party all night<br>I wanna enjoy this night<br><strong>Because it’s Friday night!!!<br>Because tonight it’s Friday night!!!</strong></div>
     <div class="graffiti">LET'S GO!</div>
   </div>
-
   <div class="crown">♔</div>
   <main class="right">
     <div class="topline">COUNTDOWN · TIME · PROGRESS</div>
     <h1 class="title"><span class="friday">FRIDAY</span><span class="night">NIGHT</span></h1>
     <div class="tagline">ALL NIGHT. EVERY FRIDAY.</div>
-
-    <section class="panel">
-      <div class="target"><span class="ice">❄</span> 距离本周五晚上 20:00（PT）还剩</div>
-      <div class="timer">
-        <div class="unit"><div class="num" id="days">00</div><div class="label">DAYS · 天</div></div>
-        <div class="unit"><div class="num" id="hours">00</div><div class="label">HOURS · 小时</div></div>
-        <div class="unit"><div class="num" id="minutes">00</div><div class="label">MINUTES · 分钟</div></div>
-        <div class="unit"><div class="num" id="seconds">00</div><div class="label">SECONDS · 秒</div></div>
-      </div>
-    </section>
-
-    <section class="panel">
-      <div class="progress-head"><b>本周解冻进度</b><span id="percent">0%</span></div>
-      <div class="progress"><div class="bar" id="bar"></div></div>
-      <div class="range"><span>周一 00:00（PT）</span><span class="end">❄ 周五 20:00（PT）</span></div>
-    </section>
-
-    <section class="panel clocks">
-      <div class="clock"><small>◷ 北京时间</small><b id="beijing">--:--:--</b></div>
-      <div class="clock"><small>◷ 加州时间</small><b id="california">--:--:--</b></div>
-    </section>
-
+    <section class="panel"><div class="target"><span class="ice">❄</span> 距离本周五晚上 20:00（PT）还剩</div><div class="timer"><div class="unit"><div class="num" id="days">00</div><div class="label">DAYS · 天</div></div><div class="unit"><div class="num" id="hours">00</div><div class="label">HOURS · 小时</div></div><div class="unit"><div class="num" id="minutes">00</div><div class="label">MINUTES · 分钟</div></div><div class="unit"><div class="num" id="seconds">00</div><div class="label">SECONDS · 秒</div></div></div></section>
+    <section class="panel"><div class="progress-head"><b>本周解冻进度</b><span id="percent">0%</span></div><div class="progress"><div class="bar" id="bar"></div></div><div class="range"><span>周一 00:00（PT）</span><span class="end">❄ 周五 20:00（PT）</span></div></section>
+    <section class="panel clocks"><div class="clock"><small>◷ 北京时间</small><b id="beijing">--:--:--</b></div><div class="clock"><small>◷ 加州时间</small><b id="california">--:--:--</b></div></section>
     <section class="panel bottom-quote">“Friday night is not a time, it’s a state of mind.”</section>
     <div class="footer">STAY FROSTED · SEE YOU SOON</div>
   </main>
 </div>
 <script>
-function californiaParts(date){
-  const parts=new Intl.DateTimeFormat('en-US',{timeZone:'America/Los_Angeles',year:'numeric',month:'2-digit',day:'2-digit',weekday:'short',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false}).formatToParts(date);
-  return Object.fromEntries(parts.map(p=>[p.type,p.value]));
-}
-function laWallToDate(y,m,d,h=0,min=0,s=0){
-  const guess=new Date(Date.UTC(y,m-1,d,h,min,s));
-  const shown=californiaParts(guess);
-  const asUTC=Date.UTC(+shown.year,+shown.month-1,+shown.day,+shown.hour%24,+shown.minute,+shown.second);
-  const wanted=Date.UTC(y,m-1,d,h,min,s);
-  return new Date(guess.getTime()+(wanted-asUTC));
-}
-function schedule(now=new Date()){
-  const p=californiaParts(now), y=+p.year,m=+p.month,d=+p.day;
-  const weekday=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].indexOf(p.weekday);
-  let toFriday=(5-weekday+7)%7;
-  let target=laWallToDate(y,m,d+toFriday,20,0,0);
-  if(target<=now) target=laWallToDate(y,m,d+toFriday+7,20,0,0);
-  const sinceMonday=(weekday+6)%7;
-  let monday=laWallToDate(y,m,d-sinceMonday,0,0,0);
-  let friday=laWallToDate(y,m,d-sinceMonday+4,20,0,0);
-  return {target,monday,friday};
-}
+function californiaParts(date){const parts=new Intl.DateTimeFormat('en-US',{timeZone:'America/Los_Angeles',year:'numeric',month:'2-digit',day:'2-digit',weekday:'short',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false}).formatToParts(date);return Object.fromEntries(parts.map(p=>[p.type,p.value]))}
+function laWallToDate(y,m,d,h=0,min=0,s=0){const guess=new Date(Date.UTC(y,m-1,d,h,min,s));const shown=californiaParts(guess);const asUTC=Date.UTC(+shown.year,+shown.month-1,+shown.day,+shown.hour%24,+shown.minute,+shown.second);const wanted=Date.UTC(y,m-1,d,h,min,s);return new Date(guess.getTime()+(wanted-asUTC))}
+function schedule(now=new Date()){const p=californiaParts(now),y=+p.year,m=+p.month,d=+p.day;const weekday=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].indexOf(p.weekday);let toFriday=(5-weekday+7)%7;let target=laWallToDate(y,m,d+toFriday,20,0,0);if(target<=now)target=laWallToDate(y,m,d+toFriday+7,20,0,0);const sinceMonday=(weekday+6)%7;const monday=laWallToDate(y,m,d-sinceMonday,0,0,0);const friday=laWallToDate(y,m,d-sinceMonday+4,20,0,0);return{target,monday,friday}}
 function pad(n){return String(n).padStart(2,'0')}
-function update(){
-  const now=new Date(), {target,monday,friday}=schedule(now);
-  const remain=Math.max(0,target-now), sec=Math.floor(remain/1000);
-  days.textContent=pad(Math.floor(sec/86400)); hours.textContent=pad(Math.floor(sec%86400/3600)); minutes.textContent=pad(Math.floor(sec%3600/60)); seconds.textContent=pad(sec%60);
-  const pct=Math.max(0,Math.min(100,(now-monday)/(friday-monday)*100)); bar.style.width=pct+'%'; percent.textContent=pct.toFixed(1)+'%';
-  beijing.textContent=new Intl.DateTimeFormat('zh-CN',{timeZone:'Asia/Shanghai',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false}).format(now);
-  california.textContent=new Intl.DateTimeFormat('zh-CN',{timeZone:'America/Los_Angeles',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false}).format(now);
-}
-update();setInterval(update,250);
+function update(){const now=new Date(),{target,monday,friday}=schedule(now);const remain=Math.max(0,target-now),sec=Math.floor(remain/1000);days.textContent=pad(Math.floor(sec/86400));hours.textContent=pad(Math.floor(sec%86400/3600));minutes.textContent=pad(Math.floor(sec%3600/60));seconds.textContent=pad(sec%60);const pct=Math.max(0,Math.min(100,(now-monday)/(friday-monday)*100));bar.style.width=pct+'%';percent.textContent=pct.toFixed(1)+'%';beijing.textContent=new Intl.DateTimeFormat('zh-CN',{timeZone:'Asia/Shanghai',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false}).format(now);california.textContent=new Intl.DateTimeFormat('zh-CN',{timeZone:'America/Los_Angeles',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false}).format(now)}
+update();setInterval(update,250)
 </script>
 </body>
 </html>
